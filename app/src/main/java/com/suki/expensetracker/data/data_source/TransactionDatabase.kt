@@ -6,5 +6,5 @@ import com.suki.expensetracker.domain.model.Transaction
 
 @Database(entities = [Transaction::class], version = 1)
 abstract class TransactionDatabase : RoomDatabase() {
-    abstract val transactionDoa: TransactionDao
+    abstract val transactionDao: TransactionDao
 }
