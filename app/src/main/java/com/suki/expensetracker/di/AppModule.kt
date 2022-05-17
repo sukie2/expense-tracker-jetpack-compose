@@ -7,6 +7,7 @@ import com.suki.expensetracker.data.data_source.TransactionDao
 import com.suki.expensetracker.data.data_source.TransactionDatabase
 import com.suki.expensetracker.data.repository.TransactionRepositoryImpl
 import com.suki.expensetracker.domain.repository.TransactionRepository
+import com.suki.expensetracker.domain.use_case.GetTransactions
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +31,11 @@ class AppModule {
     @Singleton
     fun providesTransactionRepository(db: TransactionDatabase): TransactionRepository {
         return TransactionRepositoryImpl(db.transactionDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTransactionUseCases(repository: TransactionRepository): GetTransactions{
+        return GetTransactions(repository)
     }
 }
